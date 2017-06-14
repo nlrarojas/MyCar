@@ -1,6 +1,8 @@
 package controller;
 
-public class DashController {
+import java.util.Observable;
+
+public class DashController extends Observable{
 
     public DashController() {
 

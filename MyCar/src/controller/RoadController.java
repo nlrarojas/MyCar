@@ -1,6 +1,8 @@
 package controller;
 
-public class RoadController {
+import java.util.Observable;
+
+public class RoadController extends Observable{
 
     public RoadController() {
 

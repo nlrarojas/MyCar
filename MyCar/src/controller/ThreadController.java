@@ -1,8 +1,13 @@
 package controller;
 
-public class ThreadController {
+public class ThreadController extends Thread{
 
     public ThreadController() {
 
+    }
+    
+    @Override
+    public void run(){
+        
     }
 }

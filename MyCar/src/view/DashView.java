@@ -1,7 +1,10 @@
 package view;
 
+import controller.DashController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JDesktopPane;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -11,10 +14,12 @@ import javax.swing.JMenuItem;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import util.IConstants;
 
-public class DashView extends JFrame implements IConstants, ActionListener{
+public class DashView extends JFrame implements IConstants, ActionListener, Observer{
 
-    private JDesktopPane DesktopPane;
+    private DashController Controller;
     private RoadView RoadPanelView;
+    
+    private JDesktopPane DesktopPane;
     private JMenuBar MenuBar;
     private JMenu Menu;
     private JMenuItem ItemOpenFile;
@@ -34,6 +39,7 @@ public class DashView extends JFrame implements IConstants, ActionListener{
         this.DesktopPane = new JDesktopPane();
         
         this.RoadPanelView = new RoadView();
+        this.Controller = new DashController();
         
         this.MenuBar = new JMenuBar();
         this.Menu = new JMenu("Archivo");        
@@ -60,7 +66,12 @@ public class DashView extends JFrame implements IConstants, ActionListener{
         FileChooser.setFileFilter(filter);
         int returnVal = FileChooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            System.out.println("You chose to open this file: " + FileChooser.getSelectedFile().getName());
+            System.out.println("You chose to open this file: " + FileChooser.getSelectedFile().getAbsolutePath());
         }
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        
     }
 }
