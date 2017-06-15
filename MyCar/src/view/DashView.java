@@ -38,8 +38,7 @@ public class DashView extends JFrame implements IConstants, ActionListener, Obse
         
         this.DesktopPane = new JDesktopPane();
         
-        this.RoadPanelView = new RoadView();
-        this.Controller = new DashController();
+        this.RoadPanelView = new RoadView();        
         
         this.MenuBar = new JMenuBar();
         this.Menu = new JMenu("Archivo");        
@@ -49,8 +48,10 @@ public class DashView extends JFrame implements IConstants, ActionListener, Obse
         this.ItemOpenFile.addActionListener(this);              
         
         this.DesktopPane.add(this.MenuBar).setBounds(0, 0, WIDTH_WINDOW, 25);
-        this.DesktopPane.add(this.RoadPanelView).setBounds(162, 100, 2 * WIDTH_WINDOW / 3, 2 * HEIGHT_WINDOW / 3);
+        this.DesktopPane.add(this.RoadPanelView).setBounds(256, 190, 512, 380);
         this.getContentPane().add(DesktopPane).setBounds(0, 0, WIDTH_WINDOW, HEIGHT_WINDOW);
+        
+        controllerManager();
     }
 
     @Override
@@ -73,5 +74,9 @@ public class DashView extends JFrame implements IConstants, ActionListener, Obse
     @Override
     public void update(Observable o, Object arg) {
         
+    }
+    
+    private void controllerManager(){
+        this.Controller = new DashController(RoadPanelView, 0);
     }
 }
