@@ -26,6 +26,7 @@ public class Dash extends javax.swing.JFrame {
         this.repaint();
     }
 
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,34 +36,125 @@ public class Dash extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lbl_RPM = new javax.swing.JLabel();
+        lbl_numRPM = new javax.swing.JLabel();
+        lbl_cantPts = new javax.swing.JLabel();
+        lbl_numKMH = new javax.swing.JLabel();
+        lbl_KMH2 = new javax.swing.JLabel();
+        lbl_PTS = new javax.swing.JLabel();
+        lbl_cantPts1 = new javax.swing.JLabel();
+        lbl_Cleanner = new javax.swing.JLabel();
+        lbl_Lights = new javax.swing.JLabel();
+        lbl_cantPts4 = new javax.swing.JLabel();
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lbl_RPM.setFont(new java.awt.Font("Microsoft New Tai Lue", 3, 20)); // NOI18N
+        lbl_RPM.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_RPM.setText("RPM");
+
+        lbl_numRPM.setFont(new java.awt.Font("Microsoft YaHei UI", 3, 20)); // NOI18N
+        lbl_numRPM.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_numRPM.setText("0");
+
+        lbl_cantPts.setFont(new java.awt.Font("Microsoft New Tai Lue", 3, 20)); // NOI18N
+        lbl_cantPts.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_cantPts.setText("=D");
+
+        lbl_numKMH.setFont(new java.awt.Font("Microsoft YaHei UI", 3, 20)); // NOI18N
+        lbl_numKMH.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_numKMH.setText("0");
+
+        lbl_KMH2.setFont(new java.awt.Font("Microsoft New Tai Lue", 3, 20)); // NOI18N
+        lbl_KMH2.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_KMH2.setText("KMH");
+
+        lbl_PTS.setFont(new java.awt.Font("Microsoft New Tai Lue", 3, 20)); // NOI18N
+        lbl_PTS.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_PTS.setText("PTS");
+
+        lbl_cantPts1.setFont(new java.awt.Font("Microsoft New Tai Lue", 3, 20)); // NOI18N
+        lbl_cantPts1.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_cantPts1.setText("/_ /");
+
+        lbl_Cleanner.setFont(new java.awt.Font("MS Office Symbol Bold", 3, 18)); // NOI18N
+        lbl_Cleanner.setForeground(new java.awt.Color(51, 204, 0));
+        lbl_Cleanner.setText("1");
+
+        lbl_Lights.setFont(new java.awt.Font("MS Office Symbol Bold", 3, 18)); // NOI18N
+        lbl_Lights.setForeground(new java.awt.Color(204, 51, 0));
+        lbl_Lights.setText("o");
+
+        lbl_cantPts4.setFont(new java.awt.Font("Microsoft New Tai Lue", 3, 20)); // NOI18N
+        lbl_cantPts4.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_cantPts4.setText("100");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(289, 289, 289))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(219, 219, 219)
-                        .addComponent(jLabel1)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addGap(740, 740, 740)
+                .addComponent(lbl_cantPts, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(lbl_Lights, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(470, 470, 470)
+                .addComponent(lbl_RPM, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(250, 250, 250)
+                .addComponent(lbl_Cleanner, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(600, 600, 600)
+                .addComponent(lbl_KMH2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(480, 480, 480)
+                .addComponent(lbl_numRPM, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(620, 620, 620)
+                .addComponent(lbl_numKMH, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(590, 590, 590)
+                .addComponent(lbl_cantPts4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(630, 630, 630)
+                .addComponent(lbl_PTS, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(740, 740, 740)
+                .addComponent(lbl_cantPts1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(lblFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 920, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jLabel1)
-                .addGap(71, 71, 71)
-                .addComponent(lblFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addGap(340, 340, 340)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_cantPts, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_Lights, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_RPM, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(lbl_Cleanner, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(350, 350, 350)
+                .addComponent(lbl_KMH2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(350, 350, 350)
+                .addComponent(lbl_numRPM, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(330, 330, 330)
+                .addComponent(lbl_numKMH, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(390, 390, 390)
+                .addComponent(lbl_cantPts4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(390, 390, 390)
+                .addComponent(lbl_PTS, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(380, 380, 380)
+                .addComponent(lbl_cantPts1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(lblFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -104,7 +196,16 @@ public class Dash extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lbl_Cleanner;
+    private javax.swing.JLabel lbl_KMH2;
+    private javax.swing.JLabel lbl_Lights;
+    private javax.swing.JLabel lbl_PTS;
+    private javax.swing.JLabel lbl_RPM;
+    private javax.swing.JLabel lbl_cantPts;
+    private javax.swing.JLabel lbl_cantPts1;
+    private javax.swing.JLabel lbl_cantPts4;
+    private javax.swing.JLabel lbl_numKMH;
+    private javax.swing.JLabel lbl_numRPM;
     // End of variables declaration//GEN-END:variables
 }

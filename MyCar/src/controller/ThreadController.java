@@ -2,10 +2,11 @@ package controller;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ExecutorService;
+import util.IConstants;
 
-public class ThreadController {
+public class ThreadController implements IConstants{
     private static ThreadController threadControl = null;
-    ExecutorService executorService = Executors.newFixedThreadPool(5);
+    ExecutorService executorService = Executors.newFixedThreadPool(MAX_THREADS);
     
     private ThreadController() {
     }
