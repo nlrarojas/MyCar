@@ -7,6 +7,13 @@ public class RoadController extends Observable{
     private int frameSpeed;
     private int imageId;
     
+    FileReader document;
+    String[] road;
+    
+    public RoadController() {
+        document = new FileReader();
+    }
+    
     public RoadController(int pFrameSpeed) {
         this.frameSpeed = pFrameSpeed;
         this.imageId = 0;
@@ -38,5 +45,17 @@ public class RoadController extends Observable{
 
     public void setImageId(int imageId) {
         this.imageId = imageId;
+    }
+    
+    public String[] chargeRoad(){
+        // Cualquier direccion pero estoy usando esta en este caso
+        document.readText("C:\\Users\\Yelson\\Documents\\GitHub\\MyCar\\MyCar\\Road.txt"); 
+        String text = this.document.getText();
+        String[] list = text.split("");
+        return list;
+    }
+    public String[] getRoad(){
+        road = chargeRoad();
+        return road;
     }
 }

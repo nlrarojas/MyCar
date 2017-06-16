@@ -3,17 +3,34 @@ package controller;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import view.RoadView;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ExecutorService;
+import util.IConstants;
 
-public class ThreadController extends Thread{
+public class ThreadController extends Thread implements IConstants{
 
     private RoadView RoadPanelView;
     private RoadController Road;
     
+    private static ThreadController threadControl = null;
+    ExecutorService executorService = Executors.newFixedThreadPool(MAX_THREADS);
+    
     public ThreadController() {
-
+        
+    }
+    
+    public static ThreadController getInstance(){
+        if (threadControl == null){
+            threadControl = new ThreadController();
+        }
+        return threadControl;
+    }//Asi solo se instancia una unica vez
+    
+    public ExecutorService getExecutor(){
+        return executorService;
     }
 
-    ThreadController(RoadView pRoadPanelView, int pFramesImage) {
+    public ThreadController(RoadView pRoadPanelView, int pFramesImage) {
         RoadPanelView = pRoadPanelView;
         Road = new RoadController(pFramesImage);
         Road.addObserver(RoadPanelView);

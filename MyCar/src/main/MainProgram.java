@@ -1,10 +1,11 @@
 package main;
 
-import view.DashView;
+import view.Dash;
 
 public class MainProgram {
     
     public static void main(String[] args) {
-        new DashView();
+        Dash d = new Dash();
+        d.show();
     }
 }
