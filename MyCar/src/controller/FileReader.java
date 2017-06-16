@@ -26,7 +26,7 @@ public class FileReader {
                 text =text + line;
             }
         }catch(FileNotFoundException e){
-            System.out.println("No se encuentra el archivo");
+            System.out.println("No se ha encuentrado el archivo");
         }
     }
 }
