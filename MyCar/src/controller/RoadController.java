@@ -17,6 +17,11 @@ public class RoadController extends Observable{
         this.notifyObservers();
         imageId = Math.abs(imageId - 1);
         return imageId;
+        
+        /*        
+        imageId = imageId % 14;
+        return imageId++;
+        */
     }
 
     public int getFrameSpeed() {

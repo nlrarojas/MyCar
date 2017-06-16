@@ -26,8 +26,10 @@ public class ThreadController extends Thread{
             try {
                 if(i > 60)
                     i--;
+                else
+                    i = 100;
                 Road.flipImage();                                
-                this.sleep(i);
+                this.sleep(1000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ThreadController.class.getName()).log(Level.SEVERE, null, ex);
             }
