@@ -1,6 +1,6 @@
 package model;
 
-public class SystemCoordinator extends AbstractSystem {
+public class SystemCoordinator implements ISystem {
 
     public SystemCoordinator() {
         

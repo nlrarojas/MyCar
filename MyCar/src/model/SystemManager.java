@@ -1,6 +1,6 @@
 package model;
 
-public class SystemManager extends AbstractSystem {
+public class SystemManager implements ISystem {
 
     public SystemManager() {
         
