@@ -10,7 +10,7 @@ public class RoadController {
     }
     
     public String[] chargeRoad(){
-        // Cualquier direccion pero en estoy usando esta en este caso
+        // Cualquier direccion pero estoy usando esta en este caso
         document.readText("C:\\Users\\Yelson\\Documents\\GitHub\\MyCar\\MyCar\\Road.txt"); 
         String text = this.document.getText();
         String[] list = text.split("");
