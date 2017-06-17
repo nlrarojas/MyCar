@@ -1,6 +1,6 @@
 package model;
 
-public class Obstacles extends System {
+public class Obstacles {
 
     
     public Obstacles() {

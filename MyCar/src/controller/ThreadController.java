@@ -13,7 +13,7 @@ public class ThreadController extends Thread implements IConstants{
     private RoadController Road;
     
     private static ThreadController threadControl = null;
-    ExecutorService executorService = Executors.newFixedThreadPool(MAX_THREADS);
+    ExecutorService Executor = Executors.newFixedThreadPool(MAX_THREADS);
     
     public ThreadController() {
         
@@ -22,12 +22,16 @@ public class ThreadController extends Thread implements IConstants{
     public static ThreadController getInstance(){
         if (threadControl == null){
             threadControl = new ThreadController();
-        }
-        return threadControl;
+        }        
+        return threadControl; 
     }//Asi solo se instancia una unica vez
     
+    public void addTaskToExecutor(Runnable pTask){
+        Executor.execute(pTask);
+    }
+    
     public ExecutorService getExecutor(){
-        return executorService;
+        return Executor;
     }
 
     public ThreadController(RoadView pRoadPanelView, int pFramesImage) {

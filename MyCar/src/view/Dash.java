@@ -259,7 +259,7 @@ public class Dash extends javax.swing.JFrame implements IConstants, Observer, Ke
 
     @Override
     public void update(Observable o, Object arg) {
-
+        
     }
 
     private void controllerManager() {
@@ -275,29 +275,35 @@ public class Dash extends javax.swing.JFrame implements IConstants, Observer, Ke
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_A) {
             System.out.println("Direccional Izquierda");
-        }
-        if (e.getKeyCode() == KeyEvent.VK_S) {
-            System.out.println("Bajar marcha");
-        }
+        }        
         if (e.getKeyCode() == KeyEvent.VK_D) {
             System.out.println("Direccional Derecha");
-        }
+        }        
         if (e.getKeyCode() == KeyEvent.VK_W) {
+            Controller.upGear();
             System.out.println("Subir marcha");
+        }
+        if (e.getKeyCode() == KeyEvent.VK_S) {
+            Controller.downGear();
+            System.out.println("Bajar marcha");
         }
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             System.out.println("Enciende Apaga Luz");
         }
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             System.out.println("Izquierda");
+            Controller.turnLeft();
         }
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             System.out.println("Derecha");
+            Controller.turnLeft();
         }
         if (e.getKeyCode() == KeyEvent.VK_UP) {
+            Controller.speedUp();
             System.out.println("Acelerar");
         }
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            Controller.slowDown();
             System.out.println("Frenar");
         }
     }

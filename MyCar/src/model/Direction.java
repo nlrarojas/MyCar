@@ -1,18 +1,23 @@
 package model;
 
-public class Direction extends System {
+import util.IConstants;
 
-    private int turnSpeed;
+public class Direction extends System implements IConstants{
     
-    public Direction(int pTurnSpeed) {
-        this.turnSpeed = pTurnSpeed;
+    public Direction(ISystem pSystem) {
+        super(pSystem);
     }
     
     public void turnRight(){
-        
+        instructionToExecute(TURN_RIGTH);
     }
     
     public void turnLeft(){
-        
+        instructionToExecute(TURN_LEFT);
+    }
+
+    @Override
+    public void instructionToExecute(String pInstruction) {
+        SystemController.executeSystemInstruction(pInstruction);
     }
 }
