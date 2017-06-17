@@ -11,8 +11,9 @@ import view.RoadView;
 
 public class DashController extends Observable{
 
-    private RoadView RoadPanelView;
+    private RoadController Road;
     private ThreadController Threads;
+    
     private System DirectionCoordinator;
     private System EngineCoordinator;
     private System ElectricCoordinator;
@@ -20,12 +21,8 @@ public class DashController extends Observable{
     private System DirectionManager;
     private System EngineManager;
     private System ElectricManager;
-    
-    public DashController() {
-        
-    }
 
-    public DashController(RoadView pRoadPanelView, int pFramesImage) {
+    public DashController(RoadView pRoadPanelView, int pFramesImage, view.Dash pDash) {
         DirectionCoordinator = new Direction(new SystemCoordinator());
         EngineCoordinator = new Engine(new SystemCoordinator());
         ElectricCoordinator = new Electric(new SystemCoordinator());
@@ -33,50 +30,130 @@ public class DashController extends Observable{
         DirectionManager = new Direction(new SystemManager());
         EngineManager = new Engine(new SystemManager());
         ElectricManager = new Electric(new SystemManager());
+                        
+        Road = new RoadController();
         
-        Threads = new ThreadController(pRoadPanelView, pFramesImage);
+        Threads = ThreadController.getInstance();
+        Threads.addTaskToExecutor(Road);
         Threads.start();
+        this.addObserver(pDash); 
     }
     
     public void turnLeft(){
         Direction d = (Direction) DirectionCoordinator;
         d.turnLeft();
+        setChanged();
+        notifyObservers();
     }
     
     public void turnRigth(){
         Direction d = (Direction) DirectionCoordinator;
         d.turnRight();
+        setChanged();
+        notifyObservers();
+    }
+    
+    public void startRigthLigth(){
+        Electric e = (Electric) ElectricCoordinator;
+        e.setRigthLigthOn();
+        setChanged();
+        notifyObservers();
+    }
+    
+    public void startLeftLigth(){
+        Electric e = (Electric) ElectricCoordinator;
+        e.setLeftLigthOn();
+        setChanged();
+        notifyObservers();
     }
     
     public void speedUp(){
         Engine e = (Engine) EngineCoordinator;
         e.speedUp();
+        setChanged();
+        notifyObservers();
     }
     
     public void slowDown(){
         Engine e = (Engine) EngineCoordinator;
         e.slowDown();
+        setChanged();
+        notifyObservers();
     }
     
     public void switchLigthsState(){
-        
+        Electric e = (Electric) ElectricCoordinator;
+        e.switchLigthState();
+        setChanged();
+        notifyObservers();
     }
     
     public void upGear(){
         Engine e = (Engine) EngineCoordinator;
         e.changeGear("GEAR_UP");
+        setChanged();
+        notifyObservers();
     }
     
     public void downGear(){
         Engine e = (Engine) EngineCoordinator;
         e.changeGear("GEAR_DOWN");
+        setChanged();
+        notifyObservers();
     }
     
-    public void setDirectionLeft(){
-        
+    public void StarWindShield(){
+        Electric e = (Electric) ElectricCoordinator;
+        e.switchWindShieldState();
+        setChanged();
+        notifyObservers();
     }
-    
-    public void setDirectionRigth(){
-        
+
+    public System getDirectionCoordinator() {
+        return DirectionCoordinator;
+    }
+
+    public void setDirectionCoordinator(System DirectionCoordinator) {
+        this.DirectionCoordinator = DirectionCoordinator;
+    }
+
+    public System getEngineCoordinator() {
+        return EngineCoordinator;
+    }
+
+    public void setEngineCoordinator(System EngineCoordinator) {
+        this.EngineCoordinator = EngineCoordinator;
+    }
+
+    public System getElectricCoordinator() {
+        return ElectricCoordinator;
+    }
+
+    public void setElectricCoordinator(System ElectricCoordinator) {
+        this.ElectricCoordinator = ElectricCoordinator;
+    }
+
+    public System getDirectionManager() {
+        return DirectionManager;
+    }
+
+    public void setDirectionManager(System DirectionManager) {
+        this.DirectionManager = DirectionManager;
+    }
+
+    public System getEngineManager() {
+        return EngineManager;
+    }
+
+    public void setEngineManager(System EngineManager) {
+        this.EngineManager = EngineManager;
+    }
+
+    public System getElectricManager() {
+        return ElectricManager;
+    }
+
+    public void setElectricManager(System ElectricManager) {
+        this.ElectricManager = ElectricManager;
     }
 }

@@ -15,7 +15,6 @@ public class RoadView implements IConstants, Observer{
     private JLabel RoadBackGround;
     
     public RoadView(JLabel pRoadBackGround) {
-        super();
         this.RoadBackGround = pRoadBackGround;
         initComponents();
     }
@@ -29,7 +28,7 @@ public class RoadView implements IConstants, Observer{
         if(o instanceof RoadController){
             try {
                 RoadController Road = (RoadController) o;                
-                RoadBackGround.setIcon(new ImageIcon(ImageIO.read(new File("C:\\Users\\Nelson\\Documents\\NetBeansProjects\\MyCar\\MyCar\\src\\assets\\calle" + Road.getImageId() + ".png"))));                
+                RoadBackGround.setIcon(new ImageIcon(ImageIO.read(new File("C:\\Users\\Nelson\\Documents\\NetBeansProjects\\MyCar\\MyCar\\src\\assets\\calle" + Road.getImageId() + ".png"))));
             } catch (IOException ex) {
                 System.err.println(ex.getMessage());
             }

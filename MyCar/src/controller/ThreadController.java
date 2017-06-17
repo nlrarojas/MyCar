@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import view.RoadView;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ExecutorService;
@@ -13,7 +11,7 @@ public class ThreadController extends Thread implements IConstants{
     private RoadController Road;
     
     private static ThreadController threadControl = null;
-    ExecutorService Executor = Executors.newFixedThreadPool(MAX_THREADS);
+    private static ExecutorService Executor;
     
     public ThreadController() {
         
@@ -22,6 +20,7 @@ public class ThreadController extends Thread implements IConstants{
     public static ThreadController getInstance(){
         if (threadControl == null){
             threadControl = new ThreadController();
+            Executor = Executors.newFixedThreadPool(MAX_THREADS);
         }        
         return threadControl; 
     }//Asi solo se instancia una unica vez
@@ -32,28 +31,5 @@ public class ThreadController extends Thread implements IConstants{
     
     public ExecutorService getExecutor(){
         return Executor;
-    }
-
-    public ThreadController(RoadView pRoadPanelView, int pFramesImage) {
-        RoadPanelView = pRoadPanelView;
-        Road = new RoadController(pFramesImage);
-        Road.addObserver(RoadPanelView);
-    }
-    
-    @Override
-    public void run(){
-        int i = 200;
-        while(true){            
-            try {
-                if(i > 60)
-                    i--;
-                else
-                    i = 100;
-                Road.flipImage();                                
-                this.sleep(1000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(ThreadController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
     }
 }

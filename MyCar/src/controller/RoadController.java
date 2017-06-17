@@ -1,21 +1,18 @@
 package controller;
 
 import java.util.Observable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class RoadController extends Observable{
-
+public class RoadController extends Observable implements Runnable{
     private int frameSpeed;
     private int imageId;
     
-    FileReader document;
-    String[] road;
+    private FileReader document;
+    private String[] road;
     
     public RoadController() {
         document = new FileReader();
-    }
-    
-    public RoadController(int pFrameSpeed) {
-        this.frameSpeed = pFrameSpeed;
         this.imageId = 0;
     }
     
@@ -30,7 +27,33 @@ public class RoadController extends Observable{
         return imageId++;
         */
     }
+    
+    public String[] chargeRoad(){
+        // Cualquier direccion pero estoy usando esta en este caso
+        document.readText("C:\\Users\\Yelson\\Documents\\GitHub\\MyCar\\MyCar\\Road.txt"); 
+        String text = this.document.getText();
+        String[] list = text.split("");
+        return list;
+    }
 
+    @Override
+    public void run() {
+        while (true){
+            try {
+                setChanged();
+                notifyObservers();
+                Thread.sleep(250);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(RoadController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public String[] getRoad(){
+        road = chargeRoad();
+        return road;
+    }
+    
     public int getFrameSpeed() {
         return frameSpeed;
     }
@@ -45,17 +68,5 @@ public class RoadController extends Observable{
 
     public void setImageId(int imageId) {
         this.imageId = imageId;
-    }
-    
-    public String[] chargeRoad(){
-        // Cualquier direccion pero estoy usando esta en este caso
-        document.readText("C:\\Users\\Yelson\\Documents\\GitHub\\MyCar\\MyCar\\Road.txt"); 
-        String text = this.document.getText();
-        String[] list = text.split("");
-        return list;
-    }
-    public String[] getRoad(){
-        road = chargeRoad();
-        return road;
     }
 }

@@ -31,11 +31,14 @@ public class Engine extends System implements IConstants{
     public int changeGear(String pUpGear){
         if(pUpGear.equals(GEAR_UP)){
             if(gear < 5){
-                gear++;
+                if(revolutions > MAX_RPM[gear]){
+                    revolutions = (int) (MAX_RPM[gear] * 1.30);
+                }
+                gear++;                
                 return gear;
             }
         }else{
-            if(gear > 0){
+            if(gear > 0){                
                 gear--;
                 return gear;
             }
@@ -47,23 +50,20 @@ public class Engine extends System implements IConstants{
         if(gear != 0){
             if(revolutions >= MAXIMUM_REVOLUTIONS){
                 TimerRevolutions.start();
-            }else{
+            }else{                
                 revolutions = (int) ((torque++ + 7.27) / (100.0/2750.0));
             }
-            java.lang.System.out.println(revolutions);
-        speed = speedCalculation();
+            speed = speedCalculation();
         }
         return revolutions;
     }
     
     public int slowDown(){
-        if(gear != 0){
+        //if(gear != 0){
             if(revolutions > 0){
-                revolutions = (int) (torque-- + 7.27) / (100/2750);
-            }
-            java.lang.System.out.println(revolutions);
-        speed = speedCalculation();
-        }        
+                revolutions = (int) ((torque-- + 7.27) / (100.0/2750.0));
+            }            
+            speed = speedCalculation();                
         return revolutions;
     }
 
@@ -72,8 +72,37 @@ public class Engine extends System implements IConstants{
             return (int)(((double)revolutions + 1.5416728) / 33.67650272);
         return speed;
     }
+    
+    public int speedToKm(){
+        return (speed * 3600) / 1000;
+    }
+    
     @Override
     public void instructionToExecute(String pInstruction) {
         instruction = SystemController.executeSystemInstruction(pInstruction);
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public int getRevolutions() {
+        return revolutions;
+    }
+
+    public void setRevolutions(int revolutions) {
+        this.revolutions = revolutions;
+    }
+
+    public int getGear() {
+        return gear;
+    }
+
+    public void setGear(int gear) {
+        this.gear = gear;
     }
 }

@@ -29,10 +29,10 @@ public class SystemCoordinator implements ISystem, IConstants{
             
         }
         if(pInstuctionValue.equals(START_LIGTHS)){
-            
+            return START_LIGTHS;
         }
         if(pInstuctionValue.equals(SHUTDOWN_LIGTHS)){
-            
+            return SHUTDOWN_LIGTHS;
         }
         if(pInstuctionValue.equals(START_WINDSHIELD)){
             

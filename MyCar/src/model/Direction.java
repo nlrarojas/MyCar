@@ -2,22 +2,22 @@ package model;
 
 import util.IConstants;
 
-public class Direction extends System implements IConstants{
+public class Direction extends System implements IConstants{        
     
     public Direction(ISystem pSystem) {
-        super(pSystem);
+        super(pSystem);        
     }
     
     public void turnRight(){
-        instructionToExecute(TURN_RIGTH);
+        instructionToExecute(TURN_RIGTH);        
     }
     
     public void turnLeft(){
-        instructionToExecute(TURN_LEFT);
+        instructionToExecute(TURN_LEFT);        
     }
 
     @Override
     public void instructionToExecute(String pInstruction) {
         SystemController.executeSystemInstruction(pInstruction);
-    }
+    }   
 }

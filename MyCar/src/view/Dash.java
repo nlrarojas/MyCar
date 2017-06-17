@@ -6,15 +6,24 @@
 package view;
 
 import controller.DashController;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import model.Direction;
+import model.Electric;
+import model.Engine;
 import util.IConstants;
 
 /**
@@ -38,33 +47,16 @@ public class Dash extends javax.swing.JFrame implements IConstants, Observer, Ke
     private void init() {
         this.setSize(WIDTH_WINDOW, HEIGHT_WINDOW);
         lblFondo.setOpaque(false);
-        /*
-        this.setLayout(null);
-        this.setVisible(true);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(WIDTH_WINDOW, HEIGHT_WINDOW);
+        
+        try {            
+            lbl_RigthLigth.setIcon(new ImageIcon(ImageIO.read(new File("C:\\Users\\Nelson\\Documents\\NetBeansProjects\\MyCar\\MyCar\\src\\assets\\RigthOff.png"))));
+            lbl_LeftLigth.setIcon(new ImageIcon(ImageIO.read(new File("C:\\Users\\Nelson\\Documents\\NetBeansProjects\\MyCar\\MyCar\\src\\assets\\leftOff.png"))));
+        } catch (IOException ex) {
+            Logger.getLogger(Dash.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
-
-        this.DesktopPane = new JDesktopPane();
-
-        
-
-        this.MenuBar = new JMenuBar();
-        this.Menu = new JMenu("Archivo");
-        this.MenuBar.add(this.Menu).setBounds(0, 0, 100, 25);
-        this.ItemOpenFile = new JMenuItem("Abrir archivo");
-        this.Menu.add(ItemOpenFile).setBounds(0, 0, 100, 25);
-        this.ItemOpenFile.addActionListener(this);
-        
-        this.DesktopPane.add(this.MenuBar).setBounds(0, 0, WIDTH_WINDOW, 25);
-        this.DesktopPane.add(this.RoadPanelView).setBounds(256, 190, 512, 380);
-        this.getContentPane().add(DesktopPane).setBounds(0, 0, WIDTH_WINDOW, HEIGHT_WINDOW);
-        */
-        
-        this.RoadPanelView = new RoadView(jLRoadView);
-        
-        //this.add(this.RoadPanelView).setBounds(100, 0, 10, 10);
+        this.RoadPanelView = new RoadView(jLRoadView);      
         
         this.addKeyListener(this);
 
@@ -92,10 +84,12 @@ public class Dash extends javax.swing.JFrame implements IConstants, Observer, Ke
         lbl_numKMH = new javax.swing.JLabel();
         lbl_KMH2 = new javax.swing.JLabel();
         lbl_PTS = new javax.swing.JLabel();
-        lbl_cantPts1 = new javax.swing.JLabel();
+        lbl_Gear = new javax.swing.JLabel();
         lbl_Cleanner = new javax.swing.JLabel();
         lbl_Lights = new javax.swing.JLabel();
         lbl_cantPts4 = new javax.swing.JLabel();
+        lbl_LeftLigth = new javax.swing.JLabel();
+        lbl_RigthLigth = new javax.swing.JLabel();
         lblFondo = new javax.swing.JLabel();
         jLRoadView = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -116,7 +110,7 @@ public class Dash extends javax.swing.JFrame implements IConstants, Observer, Ke
         lbl_numRPM.setForeground(new java.awt.Color(255, 255, 255));
         lbl_numRPM.setText("0");
         getContentPane().add(lbl_numRPM);
-        lbl_numRPM.setBounds(480, 350, 40, 30);
+        lbl_numRPM.setBounds(470, 340, 100, 30);
 
         lbl_cantPts.setFont(new java.awt.Font("Microsoft New Tai Lue", 3, 20)); // NOI18N
         lbl_cantPts.setForeground(new java.awt.Color(255, 255, 255));
@@ -128,7 +122,7 @@ public class Dash extends javax.swing.JFrame implements IConstants, Observer, Ke
         lbl_numKMH.setForeground(new java.awt.Color(255, 255, 255));
         lbl_numKMH.setText("0");
         getContentPane().add(lbl_numKMH);
-        lbl_numKMH.setBounds(620, 330, 40, 30);
+        lbl_numKMH.setBounds(600, 330, 60, 30);
 
         lbl_KMH2.setFont(new java.awt.Font("Microsoft New Tai Lue", 3, 20)); // NOI18N
         lbl_KMH2.setForeground(new java.awt.Color(255, 255, 255));
@@ -142,21 +136,21 @@ public class Dash extends javax.swing.JFrame implements IConstants, Observer, Ke
         getContentPane().add(lbl_PTS);
         lbl_PTS.setBounds(630, 390, 60, 30);
 
-        lbl_cantPts1.setFont(new java.awt.Font("Microsoft New Tai Lue", 3, 20)); // NOI18N
-        lbl_cantPts1.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_cantPts1.setText("/_ /");
-        getContentPane().add(lbl_cantPts1);
-        lbl_cantPts1.setBounds(740, 380, 40, 30);
+        lbl_Gear.setFont(new java.awt.Font("Microsoft New Tai Lue", 3, 20)); // NOI18N
+        lbl_Gear.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_Gear.setText("/N/");
+        getContentPane().add(lbl_Gear);
+        lbl_Gear.setBounds(740, 380, 40, 30);
 
         lbl_Cleanner.setFont(new java.awt.Font("MS Office Symbol Bold", 3, 18)); // NOI18N
-        lbl_Cleanner.setForeground(new java.awt.Color(51, 204, 0));
-        lbl_Cleanner.setText("1");
+        lbl_Cleanner.setForeground(new java.awt.Color(255, 0, 0));
+        lbl_Cleanner.setText("0");
         getContentPane().add(lbl_Cleanner);
-        lbl_Cleanner.setBounds(780, 380, 30, 30);
+        lbl_Cleanner.setBounds(780, 380, 90, 30);
 
         lbl_Lights.setFont(new java.awt.Font("MS Office Symbol Bold", 3, 18)); // NOI18N
-        lbl_Lights.setForeground(new java.awt.Color(204, 51, 0));
-        lbl_Lights.setText("o");
+        lbl_Lights.setForeground(new java.awt.Color(255, 0, 0));
+        lbl_Lights.setText("0");
         getContentPane().add(lbl_Lights);
         lbl_Lights.setBounds(780, 340, 40, 30);
 
@@ -165,6 +159,10 @@ public class Dash extends javax.swing.JFrame implements IConstants, Observer, Ke
         lbl_cantPts4.setText("100");
         getContentPane().add(lbl_cantPts4);
         lbl_cantPts4.setBounds(590, 390, 60, 30);
+        getContentPane().add(lbl_LeftLigth);
+        lbl_LeftLigth.setBounds(110, 250, 50, 50);
+        getContentPane().add(lbl_RigthLigth);
+        lbl_RigthLigth.setBounds(240, 250, 50, 50);
 
         lblFondo.setBackground(new java.awt.Color(255, 0, 153));
         getContentPane().add(lblFondo);
@@ -235,12 +233,14 @@ public class Dash extends javax.swing.JFrame implements IConstants, Observer, Ke
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lbl_Cleanner;
+    private javax.swing.JLabel lbl_Gear;
     private javax.swing.JLabel lbl_KMH2;
+    private javax.swing.JLabel lbl_LeftLigth;
     private javax.swing.JLabel lbl_Lights;
     private javax.swing.JLabel lbl_PTS;
     private javax.swing.JLabel lbl_RPM;
+    private javax.swing.JLabel lbl_RigthLigth;
     private javax.swing.JLabel lbl_cantPts;
-    private javax.swing.JLabel lbl_cantPts1;
     private javax.swing.JLabel lbl_cantPts4;
     private javax.swing.JLabel lbl_numKMH;
     private javax.swing.JLabel lbl_numRPM;
@@ -259,11 +259,55 @@ public class Dash extends javax.swing.JFrame implements IConstants, Observer, Ke
 
     @Override
     public void update(Observable o, Object arg) {
-        
+        if(o instanceof DashController){
+            Engine EngineUptaded = (Engine)Controller.getEngineCoordinator();
+            lbl_numRPM.setText(EngineUptaded.getRevolutions() + "");
+            lbl_numKMH.setText(EngineUptaded.speedToKm() + " ");
+            
+            if(EngineUptaded.getGear() != 0){
+                lbl_Gear.setText(EngineUptaded.getGear() + "");
+            }else{
+                lbl_Gear.setText("N");
+            }
+            
+            Direction DirectionUpdated = (Direction) Controller.getDirectionCoordinator();
+            
+            
+            Electric ElectricUpdated = (Electric) Controller.getElectricCoordinator();
+            if(ElectricUpdated.isLightsOn()){
+                lbl_Lights.setForeground(Color.green);
+                lbl_Lights.setText("1");
+            }else{
+                lbl_Lights.setForeground(Color.red);
+                lbl_Lights.setText("0");
+            }
+            if(ElectricUpdated.isWindShielOn()){
+                lbl_Cleanner.setForeground(Color.green);
+                lbl_Cleanner.setText(" /N/  1");
+            }else{
+                lbl_Cleanner.setForeground(Color.red);
+                lbl_Cleanner.setText(" /N/  0");
+            }
+            
+            try {
+                if(ElectricUpdated.isLeftOn()){
+                    lbl_LeftLigth.setIcon(new ImageIcon(ImageIO.read(new File("C:\\Users\\Nelson\\Documents\\NetBeansProjects\\MyCar\\MyCar\\src\\assets\\leftOn.png"))));
+                }else{
+                    lbl_LeftLigth.setIcon(new ImageIcon(ImageIO.read(new File("C:\\Users\\Nelson\\Documents\\NetBeansProjects\\MyCar\\MyCar\\src\\assets\\leftOff.png"))));
+                }
+                if(ElectricUpdated.isRifthOn()){
+                    lbl_RigthLigth.setIcon(new ImageIcon(ImageIO.read(new File("C:\\Users\\Nelson\\Documents\\NetBeansProjects\\MyCar\\MyCar\\src\\assets\\RigthOn.png"))));
+                }else{
+                    lbl_RigthLigth.setIcon(new ImageIcon(ImageIO.read(new File("C:\\Users\\Nelson\\Documents\\NetBeansProjects\\MyCar\\MyCar\\src\\assets\\RigthOff.png"))));
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Dash.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     private void controllerManager() {
-        this.Controller = new DashController(RoadPanelView, 0);
+        this.Controller = new DashController(RoadPanelView, 0, this);
     }
 
     @Override
@@ -274,9 +318,11 @@ public class Dash extends javax.swing.JFrame implements IConstants, Observer, Ke
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_A) {
+            Controller.startLeftLigth();
             System.out.println("Direccional Izquierda");
         }        
         if (e.getKeyCode() == KeyEvent.VK_D) {
+            Controller.startRigthLigth();
             System.out.println("Direccional Derecha");
         }        
         if (e.getKeyCode() == KeyEvent.VK_W) {
@@ -287,7 +333,12 @@ public class Dash extends javax.swing.JFrame implements IConstants, Observer, Ke
             Controller.downGear();
             System.out.println("Bajar marcha");
         }
+        if (e.getKeyCode() == KeyEvent.VK_Z) {
+            Controller.StarWindShield();
+            System.out.println("Enciende, apaga cleaner");
+        }
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            Controller.switchLigthsState();
             System.out.println("Enciende Apaga Luz");
         }
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -296,7 +347,7 @@ public class Dash extends javax.swing.JFrame implements IConstants, Observer, Ke
         }
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             System.out.println("Derecha");
-            Controller.turnLeft();
+            Controller.turnRigth();
         }
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             Controller.speedUp();
