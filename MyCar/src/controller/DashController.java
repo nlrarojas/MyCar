@@ -30,7 +30,7 @@ public class DashController extends Observable{
         DirectionManager = new Direction(new SystemManager());
         EngineManager = new Engine(new SystemManager());
         ElectricManager = new Electric(new SystemManager());
-                        
+                
         Road = new RoadController();
         
         Threads = ThreadController.getInstance();
@@ -40,29 +40,25 @@ public class DashController extends Observable{
     }
     
     public void turnLeft(){
-        Direction d = (Direction) DirectionCoordinator;
-        d.turnLeft();
+        DirectionCoordinator.turnLeft();
         setChanged();
         notifyObservers();
     }
     
     public void turnRigth(){
-        Direction d = (Direction) DirectionCoordinator;
-        d.turnRight();
+        DirectionCoordinator.turnRight();
         setChanged();
         notifyObservers();
     }
     
     public void startRigthLigth(){
-        Electric e = (Electric) ElectricCoordinator;
-        e.setRigthLigthOn();
+        ElectricCoordinator.turnRight();
         setChanged();
         notifyObservers();
     }
     
     public void startLeftLigth(){
-        Electric e = (Electric) ElectricCoordinator;
-        e.setLeftLigthOn();
+        ElectricCoordinator.turnLeft();
         setChanged();
         notifyObservers();
     }
@@ -82,8 +78,7 @@ public class DashController extends Observable{
     }
     
     public void switchLigthsState(){
-        Electric e = (Electric) ElectricCoordinator;
-        e.switchLigthState();
+        ElectricCoordinator.switchLigthState();
         setChanged();
         notifyObservers();
     }

@@ -5,14 +5,11 @@ import javax.swing.Timer;
 import util.IConstants;
 
 public class Engine extends System implements IConstants{
-
-    private int speed;
-    private int revolutions;
-    private int gear;
+    
     private Timer TimerRevolutions;
     private boolean revolutionsPassed;
     private int timeExitingRevolutionLimit;
-    private int torque;
+    
     
     public Engine(ISystem pSystem) {
         super(pSystem);
@@ -33,13 +30,14 @@ public class Engine extends System implements IConstants{
             if(gear < 5){
                 if(revolutions > MAX_RPM[gear]){
                     revolutions = (int) (MAX_RPM[gear] * 1.30);
+                    speed = speedRaiseCalculation();
                 }
                 gear++;                
                 return gear;
             }
         }else{
-            if(gear > 0){                
-                gear--;
+            if(gear > 0){            
+                gear--;                
                 return gear;
             }
         }
@@ -53,7 +51,7 @@ public class Engine extends System implements IConstants{
             }else{                
                 revolutions = (int) ((torque++ + 7.27) / (100.0/2750.0));
             }
-            speed = speedCalculation();
+            speed = speedRaiseCalculation();
         }
         return revolutions;
     }
@@ -63,14 +61,18 @@ public class Engine extends System implements IConstants{
             if(revolutions > 0){
                 revolutions = (int) ((torque-- + 7.27) / (100.0/2750.0));
             }            
-            speed = speedCalculation();                
+            speed = speedLowCalculation();                
         return revolutions;
     }
 
-    private int speedCalculation(){
+    private int speedRaiseCalculation(){
         if (speed < MAX_VELOCITY[gear])
             return (int)(((double)revolutions + 1.5416728) / 33.67650272);
         return speed;
+    }
+    
+    private int speedLowCalculation(){
+        return (int)(((double)revolutions + 1.5416728) / 33.67650272);
     }
     
     public int speedToKm(){
@@ -82,27 +84,23 @@ public class Engine extends System implements IConstants{
         instruction = SystemController.executeSystemInstruction(pInstruction);
     }
 
-    public int getSpeed() {
-        return speed;
+    @Override
+    public void turnRight() {
+        
     }
 
-    public void setSpeed(int speed) {
-        this.speed = speed;
+    @Override
+    public void turnLeft() {
+        
     }
 
-    public int getRevolutions() {
-        return revolutions;
+    @Override
+    public void switchWindShieldState() {
+        
     }
 
-    public void setRevolutions(int revolutions) {
-        this.revolutions = revolutions;
-    }
-
-    public int getGear() {
-        return gear;
-    }
-
-    public void setGear(int gear) {
-        this.gear = gear;
+    @Override
+    public void switchLigthState() {
+        
     }
 }

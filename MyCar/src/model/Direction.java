@@ -8,10 +8,12 @@ public class Direction extends System implements IConstants{
         super(pSystem);        
     }
     
+    @Override
     public void turnRight(){
-        instructionToExecute(TURN_RIGTH);        
+        instructionToExecute(TURN_RIGTH); 
     }
     
+    @Override
     public void turnLeft(){
         instructionToExecute(TURN_LEFT);        
     }
@@ -20,4 +22,14 @@ public class Direction extends System implements IConstants{
     public void instructionToExecute(String pInstruction) {
         SystemController.executeSystemInstruction(pInstruction);
     }   
+
+    @Override
+    public void switchWindShieldState() {
+        
+    }
+
+    @Override
+    public void switchLigthState() {
+        
+    }
 }
