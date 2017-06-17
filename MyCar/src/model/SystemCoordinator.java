@@ -1,11 +1,20 @@
 package model;
 
+import controller.Evaluator;
 import util.IConstants;
 
 public class SystemCoordinator implements ISystem, IConstants{
 
+    private Evaluator PlayerEvaluator;
+    
     public SystemCoordinator() {
-        
+        PlayerEvaluator = new Evaluator();
+    }
+    
+    @Override
+    public int removePoints(int pPoints){
+        PlayerEvaluator.setScore(PlayerEvaluator.getScore() - pPoints);
+        return PlayerEvaluator.getScore();
     }
 
     @Override

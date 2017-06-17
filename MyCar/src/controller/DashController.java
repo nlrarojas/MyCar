@@ -97,9 +97,16 @@ public class DashController extends Observable{
         notifyObservers();
     }
     
-    public void StarWindShield(){
+    public void starWindShield(){
         Electric e = (Electric) ElectricCoordinator;
         e.switchWindShieldState();
+        setChanged();
+        notifyObservers();
+    }
+    
+    public void shutDownLigths(){
+        Electric e = (Electric) ElectricCoordinator;
+        e.shutDownLigths();
         setChanged();
         notifyObservers();
     }

@@ -1,6 +1,10 @@
 package model;
 
-public abstract class System implements Runnable {
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import util.IConstants;
+
+public abstract class System implements Runnable, IConstants {
 
     protected ISystem SystemController;
     protected String instruction;
@@ -13,21 +17,52 @@ public abstract class System implements Runnable {
     protected boolean windShielOn;
     protected boolean lightsOn;
     protected boolean leftOn;
-    protected boolean rifthOn;
+    protected boolean rigthOn;
     
     protected boolean turnRigth;
-    protected boolean leftRigth;
+    protected boolean turnLeft;
+    
+    private int counter;
 
     public System(ISystem pSystem) {
         this.SystemController = pSystem;
+        this.counter = 0;
     }
 
     @Override
     public void run() {
         while (true) {
-            
+            try {
+                if (revolutions >= MAXIMUM_REVOLUTIONS){
+                    if(counter++ == 100){
+                        SystemController.removePoints(PENALTY_POINTS);
+                        counter = 0;
+                    }
+                } else {
+                    counter = 0;                
+                }
+                
+                if(turnLeft){
+                    if(leftOn){
+                        leftOn = false;
+                    }else{
+                        SystemController.removePoints(PENALTY_POINTS);
+                    }
+                }
+                
+                if(turnRigth){                     
+                    if(rigthOn){
+                        rigthOn = false;
+                    }else{
+                        SystemController.removePoints(PENALTY_POINTS);
+                    }
+                }
+                
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(System.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        //Verificar si la ejecución debe de hacerse aquí
     }
 
     public abstract void instructionToExecute(String pInstruction);
@@ -35,6 +70,7 @@ public abstract class System implements Runnable {
     public abstract void turnLeft();
     public abstract void switchWindShieldState();
     public abstract void switchLigthState();
+    public abstract void shutDownLigths();
     
     public int getSpeed() {
         return speed;
@@ -84,12 +120,12 @@ public abstract class System implements Runnable {
         this.leftOn = leftOn;
     }
 
-    public boolean isRifthOn() {
-        return rifthOn;
+    public boolean isRigthOn() {
+        return rigthOn;
     }
 
-    public void setRifthOn(boolean rifthOn) {
-        this.rifthOn = rifthOn;
+    public void setRigthOn(boolean rigthOn) {
+        this.rigthOn = rigthOn;
     }
 
     public int getTorque() {
@@ -108,11 +144,11 @@ public abstract class System implements Runnable {
         this.turnRigth = turnRigth;
     }
 
-    public boolean isLeftRigth() {
-        return leftRigth;
+    public boolean isTurnLeft() {
+        return turnLeft;
     }
 
-    public void setLeftRigth(boolean leftRigth) {
-        this.leftRigth = leftRigth;
+    public void setTurnLeft(boolean leftRigth) {
+        this.turnLeft = leftRigth;
     }
 }

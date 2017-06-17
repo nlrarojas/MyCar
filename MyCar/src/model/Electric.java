@@ -8,21 +8,28 @@ public class Electric extends System implements IConstants{
         super(pSystem);
         windShielOn = false;
         lightsOn = false;
-        rifthOn = false;
+        rigthOn = false;
         leftOn = false;
     }
     
     @Override
     public void turnLeft(){
         instructionToExecute(TURN_LEFT);
-        rifthOn = false;
+        rigthOn = false;
         leftOn = true;
     }
     
     @Override
     public void turnRight(){
         instructionToExecute(TURN_RIGTH);
-        rifthOn = true;
+        rigthOn = true;
+        leftOn = false;
+    }
+    
+    @Override
+    public void shutDownLigths() {
+        instructionToExecute(NONE_INSTRUCTION);
+        rigthOn = false;
         leftOn = false;
     }
     

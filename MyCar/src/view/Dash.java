@@ -291,7 +291,7 @@ public class Dash extends javax.swing.JFrame implements IConstants, Observer, Ke
                 }else{
                     lbl_LeftLigth.setIcon(new ImageIcon(ImageIO.read(new File("C:\\Users\\Nelson\\Documents\\NetBeansProjects\\MyCar\\MyCar\\src\\assets\\leftOff.png"))));
                 }
-                if(ElectricUpdated.isRifthOn()){
+                if(ElectricUpdated.isRigthOn()){
                     lbl_RigthLigth.setIcon(new ImageIcon(ImageIO.read(new File("C:\\Users\\Nelson\\Documents\\NetBeansProjects\\MyCar\\MyCar\\src\\assets\\RigthOn.png"))));
                 }else{
                     lbl_RigthLigth.setIcon(new ImageIcon(ImageIO.read(new File("C:\\Users\\Nelson\\Documents\\NetBeansProjects\\MyCar\\MyCar\\src\\assets\\RigthOff.png"))));
@@ -330,8 +330,12 @@ public class Dash extends javax.swing.JFrame implements IConstants, Observer, Ke
             System.out.println("Bajar marcha");
         }
         if (e.getKeyCode() == KeyEvent.VK_Z) {
-            Controller.StarWindShield();
+            Controller.starWindShield();
             System.out.println("Enciende, apaga cleaner");
+        }
+        if (e.getKeyCode() == KeyEvent.VK_X) {
+            Controller.shutDownLigths();
+            System.out.println("Apaga luces");
         }
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             Controller.switchLigthsState();

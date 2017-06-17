@@ -32,4 +32,9 @@ public class Direction extends System implements IConstants{
     public void switchLigthState() {
         
     }
+
+    @Override
+    public void shutDownLigths() {
+        
+    }
 }

@@ -7,6 +7,7 @@ public interface IConstants {
     public static int MAXIMUM_REVOLUTIONS = 3500;
     public static double RADIAN_PER_SECOND = (2 * Math.PI) / 60;
     
+    public static int PENALTY_POINTS = 5;
     public final int MAX_THREADS = 5;
     
     public final double[] MAX_VELOCITY = {0, 12.83333, 19.97222, 28.96111, 38.61666, 49.43333};
