@@ -9,6 +9,6 @@ public class Night extends Obstacle{
  
     @Override
     public void generate(){
-        
+        this.path = "src/images.carreteraNoche/carreteraNoche";
     }
 }
