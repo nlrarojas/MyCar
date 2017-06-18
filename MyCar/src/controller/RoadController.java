@@ -3,8 +3,11 @@ package controller;
 import java.util.Observable;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Obstacle;
 import model.ObstacleGenerator;
+import view.RoadView;
 
 public class RoadController extends Observable{
 
@@ -13,12 +16,17 @@ public class RoadController extends Observable{
     
     FileReader document;
     ObstacleGenerator obstacleGenerator;
+
+    public ObstacleGenerator getObstacleGenerator() {
+        return obstacleGenerator;
+    }
     Obstacle actualObstacle;
     Queue<String> road;
     
     public RoadController() {
         document = new FileReader();
         obstacleGenerator = new ObstacleGenerator();
+        
     }
     
     public RoadController(int pFrameSpeed) {

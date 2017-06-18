@@ -10,10 +10,10 @@ public class FourCorners extends Obstacle{
         //Para saber si es de noche o de dia
         //true si es de dia, false de lo contrario
         if (b){
-            this.path = "src/images.carreteraDia+/carreteraDia+";
+            this.path = "src\\images\\carreteraDia+\\carreteraDia";
         }
         else{
-            this.path = "src/images.carreteraNoche+/carreteraNoche+";
+            this.path = "src\\images\\carreteraNoche+\\carreteraNoche";
         }
         
     }

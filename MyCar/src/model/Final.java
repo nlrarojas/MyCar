@@ -10,10 +10,10 @@ public class Final extends Obstacle{
         //Para saber si es de noche o de dia
         //true si es de dia, false de lo contrario
         if (b){
-            this.path = "src/images.carreteraDiaF/carreteraDiaF";
+            this.path = "src\\images\\carreteraDiaF\\carreteraDia";
         }
         else{
-            this.path = "src/images.carreteraNocheF/carreteraNocheF";
+            this.path = "src\\images\\carreteraNocheF\\carreteraNoche";
         }
     }
 }

@@ -8,10 +8,10 @@ package model;
 public class Intersection extends Obstacle{
     public void generate(boolean b){
         if (b){
-            this.path = "src/images.carreteraDiaT/carreteraDiaT";
+            this.path = "src\\images\\carreteraDiaT\\carreteraDia";
         }
         else{
-            this.path = "src/images.carreteraNocheT/carreteraNocheT";
+            this.path = "src\\images\\carreteraNocheT\\carreteraNoche";
         }
     }
 }

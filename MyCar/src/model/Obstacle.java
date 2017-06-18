@@ -7,7 +7,7 @@ public class Obstacle extends System {
         return path;
     }
 
-    public void generate(){
+    public void generate(boolean b){
         //Aqui en donde los debe pintar, (pero en cada imagen)
         //cuando esté todas las imagenes listas se lo implemento
     }

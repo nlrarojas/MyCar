@@ -7,7 +7,7 @@ package model;
 
 public class Day extends Obstacle{
     @Override
-    public void generate(){
-        this.path = "src/images.carreteraDia/carreteraDia";
+    public void generate(boolean b){
+        this.path = "src\\images\\carreteraDia\\carreteraDia";
     }
 }

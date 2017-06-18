@@ -8,7 +8,7 @@ package model;
 public class MinSpeed extends Obstacle{
     
     @Override
-    public void generate(){
+    public void generate(boolean b){
         
     }
 }

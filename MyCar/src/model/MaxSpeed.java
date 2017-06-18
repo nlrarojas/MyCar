@@ -7,7 +7,7 @@ package model;
 
 public class MaxSpeed extends Obstacle{
     @Override
-    public void generate(){
+    public void generate(boolean b){
         
     }
 }
