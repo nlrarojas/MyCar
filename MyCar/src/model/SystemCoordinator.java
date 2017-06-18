@@ -13,7 +13,7 @@ public class SystemCoordinator implements ISystem, IConstants{
     
     @Override
     public int removePoints(int pPoints){
-        PlayerEvaluator.setScore(PlayerEvaluator.getScore() - pPoints);
+        PlayerEvaluator.setScore(PlayerEvaluator.getScore() - pPoints);        
         return PlayerEvaluator.getScore();
     }
 
