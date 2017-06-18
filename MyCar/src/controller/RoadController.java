@@ -1,6 +1,10 @@
 package controller;
 
 import java.util.Observable;
+import java.util.LinkedList;
+import java.util.Queue;
+import model.Obstacle;
+import model.ObstacleGenerator;
 
 public class RoadController extends Observable{
 
@@ -8,10 +12,13 @@ public class RoadController extends Observable{
     private int imageId;
     
     FileReader document;
-    String[] road;
+    ObstacleGenerator obstacleGenerator;
+    Obstacle actualObstacle;
+    Queue<String> road;
     
     public RoadController() {
         document = new FileReader();
+        obstacleGenerator = new ObstacleGenerator();
     }
     
     public RoadController(int pFrameSpeed) {
@@ -47,15 +54,23 @@ public class RoadController extends Observable{
         this.imageId = imageId;
     }
     
-    public String[] chargeRoad(){
+    public Queue chargeRoad(){
         // Cualquier direccion pero estoy usando esta en este caso
         document.readText("C:\\Users\\Yelson\\Documents\\GitHub\\MyCar\\MyCar\\Road.txt"); 
         String text = this.document.getText();
-        String[] list = text.split("");
-        return list;
+        String[] temporalList = text.split("");
+        Queue <String> queue = new LinkedList();
+        for (int i = 0; i<temporalList.length; i++){
+            queue.add(temporalList[i]);
+        }
+        return queue;
     }
-    public String[] getRoad(){
+    public Queue getRoad(){
         road = chargeRoad();
         return road;
+    }
+    
+    public Obstacle getActualObstacle(){
+        return obstacleGenerator.generateObstacle(road.poll());
     }
 }
