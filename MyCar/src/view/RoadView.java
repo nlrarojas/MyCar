@@ -28,7 +28,14 @@ public class RoadView implements IConstants, Observer{
         if(o instanceof RoadController){
             try {
                 RoadController Road = (RoadController) o;                
-                RoadBackGround.setIcon(new ImageIcon(ImageIO.read(new File("C:\\Users\\Nelson\\Documents\\NetBeansProjects\\MyCar\\MyCar\\src\\assets\\calle" + Road.getImageId() + ".png"))));
+                RoadBackGround.setIcon(new ImageIcon(ImageIO.read(new File("assets/calle" + Road.getImageId() + ".png"))));
+                if(Road.getActualObstacle() != null){
+                    Road.getActualObstacle().generate();
+                }
+                if(Road.getActualObstacle().getClass().equals(model.Final.class)){
+                    Road.setRunRoadController(false);
+                }
+                //RoadBackGround.setIcon(new ImageIcon(ImageIO.read(new File(Road.getActualObstacle().getNextImage()))));
             } catch (IOException ex) {
                 System.err.println(ex.getMessage());
             }

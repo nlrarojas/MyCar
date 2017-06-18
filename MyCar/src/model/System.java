@@ -71,6 +71,7 @@ public abstract class System implements Runnable, IConstants {
     public abstract void switchWindShieldState();
     public abstract void switchLigthState();
     public abstract void shutDownLigths();
+    public abstract void startSimulation(String pFileRoadPath);
     
     public int getSpeed() {
         return speed;

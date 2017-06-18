@@ -37,4 +37,9 @@ public class Direction extends System implements IConstants{
     public void shutDownLigths() {
         
     }
+
+    @Override
+    public void startSimulation(String pFileRoadPath) {
+        
+    }
 }

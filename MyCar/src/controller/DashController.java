@@ -7,13 +7,10 @@ import model.Engine;
 import model.SystemCoordinator;
 import model.System;
 import model.SystemManager;
+import util.IConstants;
 import view.RoadView;
 
-public class DashController extends Observable{
-
-    private RoadController Road;
-    private ThreadController Threads;
-    
+public class DashController extends Observable implements IConstants{       
     private System DirectionCoordinator;
     private System EngineCoordinator;
     private System ElectricCoordinator;
@@ -21,7 +18,7 @@ public class DashController extends Observable{
     private System DirectionManager;
     private System EngineManager;
     private System ElectricManager;
-
+    
     public DashController(RoadView pRoadPanelView, int pFramesImage, view.Dash pDash) {
         DirectionCoordinator = new Direction(new SystemCoordinator());
         EngineCoordinator = new Engine(new SystemCoordinator());
@@ -29,13 +26,8 @@ public class DashController extends Observable{
         
         DirectionManager = new Direction(new SystemManager());
         EngineManager = new Engine(new SystemManager());
-        ElectricManager = new Electric(new SystemManager());
-                
-        Road = new RoadController();
+        ElectricManager = new Electric(new SystemManager());      
         
-        Threads = ThreadController.getInstance();
-        Threads.addTaskToExecutor(Road);
-        Threads.start();
         this.addObserver(pDash); 
     }
     
@@ -85,14 +77,14 @@ public class DashController extends Observable{
     
     public void upGear(){
         Engine e = (Engine) EngineCoordinator;
-        e.changeGear("GEAR_UP");
+        e.changeGear(GEAR_UP);
         setChanged();
         notifyObservers();
     }
     
     public void downGear(){
         Engine e = (Engine) EngineCoordinator;
-        e.changeGear("GEAR_DOWN");
+        e.changeGear(GEAR_DOWN);
         setChanged();
         notifyObservers();
     }
@@ -102,6 +94,10 @@ public class DashController extends Observable{
         e.switchWindShieldState();
         setChanged();
         notifyObservers();
+    }
+    
+    public void setFileRoadPath(String pFileRoad){    
+        EngineCoordinator.startSimulation(pFileRoad);
     }
     
     public void shutDownLigths(){

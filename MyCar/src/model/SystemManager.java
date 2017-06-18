@@ -17,4 +17,14 @@ public class SystemManager implements ISystem {
     public int removePoints(int pPoints) {
         return 0;
     }
+
+    @Override
+    public void updateSpeed(int pSpeed) {
+
+    }
+    
+    @Override
+    public void startSimulation(String pFileRoadPath){
+        
+    }
 }

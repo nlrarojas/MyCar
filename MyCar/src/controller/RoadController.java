@@ -1,8 +1,6 @@
 package controller;
 
 import java.util.Observable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.LinkedList;
 import java.util.Queue;
 import model.Obstacle;
@@ -12,22 +10,28 @@ public class RoadController extends Observable implements Runnable {
 
     private int frameSpeed;
     private int imageId;
-
-    private FileReader document;
-    private ObstacleGenerator obstacleGenerator;
+    private boolean runRoadController;
+    private String filePath;
+    
+    private FileReader Document;
+    private ObstacleGenerator ObstacleGenerator;
     private Obstacle actualObstacle;
     private Queue<String> road;
 
     public RoadController() {
-        document = new FileReader();
-        obstacleGenerator = new ObstacleGenerator();
+        this.Document = new FileReader();
+        this.ObstacleGenerator = new ObstacleGenerator();
+        this.frameSpeed = 0;
+        this.imageId = 0;
+        this.runRoadController = false;
     }
 
     public RoadController(int pFrameSpeed) {
         this.frameSpeed = pFrameSpeed;
         this.imageId = 0;
-        document = new FileReader();
-        obstacleGenerator = new ObstacleGenerator();
+        this.Document = new FileReader();
+        this.ObstacleGenerator = new ObstacleGenerator();
+        this.runRoadController = false;
     }
 
     public int flipImage() {
@@ -51,14 +55,26 @@ public class RoadController extends Observable implements Runnable {
 //    }
     @Override
     public void run() {
+        road = chargeRoad();
         while (true) {
-            try {
-                setChanged();
-                notifyObservers();
-                Thread.sleep(250);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(RoadController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            System.out.println("i");
+            while (this.runRoadController){                                
+                try {                                        
+                    if(!actualObstacle.getClass().equals(model.Final.class)){                        
+                        actualObstacle = getNextActualObstacle();              
+                    }
+                    setChanged();
+                    notifyObservers();
+
+                    Thread.sleep(frameSpeed);
+                } catch (InterruptedException ex) {
+                    System.out.println(ex.getMessage());
+                }
+                if(!this.runRoadController){                    
+                    ThreadController.getInstance().setThreadStarted(false);
+                    break;
+                }
+            }            
         }
     }
 
@@ -66,8 +82,9 @@ public class RoadController extends Observable implements Runnable {
         return frameSpeed;
     }
 
-    public void setFrameSpeed(int frameSpeed) {
+    public void setFrameSpeed(int frameSpeed) {        
         this.frameSpeed = frameSpeed;
+        this.runRoadController = true;
     }
 
     public int getImageId() {
@@ -80,13 +97,34 @@ public class RoadController extends Observable implements Runnable {
 
     public Queue chargeRoad() {
         // Cualquier direccion pero estoy usando esta en este caso
-        document.readText("C:\\Users\\Yelson\\Documents\\GitHub\\MyCar\\MyCar\\Road.txt");
-        String text = this.document.getText();
+        Document.readText(filePath);
+        String text = this.Document.getText();
+        String auxiliarText = "";
         String[] temporalList = text.split("");
         Queue<String> queue = new LinkedList();
         for (int i = 0; i < temporalList.length; i++) {
-            queue.add(temporalList[i]);
+            if(temporalList[i].equalsIgnoreCase("m")){
+                auxiliarText = temporalList[i++];
+                while(true){
+                    try{
+                        if(temporalList[i].equals(".")){
+                            queue.add(auxiliarText);
+                            queue.add(temporalList[i]);
+                            auxiliarText = "";
+                            break;
+                        }
+                        auxiliarText += Integer.parseInt(temporalList[i++]);
+                    }catch (NumberFormatException e){
+                        queue.add(auxiliarText);
+                        auxiliarText = "";
+                        break;
+                    }
+                }
+            }else{
+                queue.add(temporalList[i]);
+            }                        
         }
+        System.out.println(queue.toString());        
         return queue;
     }
 
@@ -95,7 +133,34 @@ public class RoadController extends Observable implements Runnable {
         return road;
     }
 
+    public Obstacle getNextActualObstacle() {
+        if(!road.isEmpty()){
+            return ObstacleGenerator.generateObstacle(road.poll());
+        }
+        return null;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
     public Obstacle getActualObstacle() {
-        return obstacleGenerator.generateObstacle(road.poll());
+        return actualObstacle;
+    }
+
+    public void setActualObstacle(Obstacle actualObstacle) {
+        this.actualObstacle = actualObstacle;
+    }
+
+    public boolean isRunRoadController() {
+        return runRoadController;
+    }
+
+    public void setRunRoadController(boolean runRoadController) {
+        this.runRoadController = runRoadController;
     }
 }

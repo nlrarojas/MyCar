@@ -49,4 +49,9 @@ public class Electric extends System implements IConstants{
     public void instructionToExecute(String pInstruction) {
         instruction = SystemController.executeSystemInstruction(pInstruction);
     }
+    
+    @Override
+    public void startSimulation(String pFileRoadPath) {
+        
+    }
  }

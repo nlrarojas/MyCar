@@ -1,24 +1,29 @@
 package controller;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.IOException;
 
 public class FileReader {
     private String text;
+    private java.io.FileReader FileToRead;
+    private BufferedReader br;
     
     public FileReader() {
         text = "";
     }
     
-    public void readText(String direction){
-        java.io.File file = new java.io.File(direction);
+    public void readText(String direction){        
         try {
-            Scanner input = new Scanner(file);
-            while (input.hasNext()){
-                String line = input.nextLine();
-                text =text + line;
-            }
+            FileToRead = new java.io.FileReader(direction);
+            br = new BufferedReader(FileToRead);
+            String line;
+            while ((line = br.readLine()) != null){
+                text = text + line;
+            }            
         }catch(FileNotFoundException e){
+            System.out.println("No se ha encontrado el archivo");
+        } catch (IOException ex) {
             System.out.println("No se ha encontrado el archivo");
         }
     }

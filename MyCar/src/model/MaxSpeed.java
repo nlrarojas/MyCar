@@ -6,6 +6,12 @@
 package model;
 
 public class MaxSpeed extends Obstacle{
+
+    private int speedLimit;
+    
+    MaxSpeed(String pSpeedLimit) {
+        this.speedLimit = Integer.parseInt(pSpeedLimit);
+    }
     @Override
     public void generate(){
         

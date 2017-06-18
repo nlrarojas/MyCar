@@ -249,7 +249,7 @@ public class Dash extends javax.swing.JFrame implements IConstants, Observer, Ke
         FileChooser.setFileFilter(filter);
         int returnVal = FileChooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            System.out.println("You chose to open this file: " + FileChooser.getSelectedFile().getAbsolutePath());
+            Controller.setFileRoadPath(FileChooser.getSelectedFile().getAbsolutePath());
         }
     }
 
@@ -258,7 +258,7 @@ public class Dash extends javax.swing.JFrame implements IConstants, Observer, Ke
         if(o instanceof DashController){
             Engine EngineUptaded = (Engine)Controller.getEngineCoordinator();
             lbl_numRPM.setText(EngineUptaded.getRevolutions() + "");
-            lbl_numKMH.setText(EngineUptaded.speedToKm() + " ");
+            lbl_numKMH.setText(EngineUptaded.speedToKmH() + " ");
             
             if(EngineUptaded.getGear() != 0){
                 lbl_Gear.setText(EngineUptaded.getGear() + "");

@@ -51,4 +51,19 @@ public class SystemCoordinator implements ISystem, IConstants{
         }
         return NONE_INSTRUCTION;
     }
+    
+    @Override
+    public void updateSpeed(int pSpeed){
+        ROAD.setFrameSpeed(pSpeed);        
+    }
+    
+    @Override
+    public void startSimulation(String pFileRoadPath){
+        if(!THREADS.isThreadStarted()){
+            ROAD.setFilePath(pFileRoadPath);
+            THREADS.addTaskToExecutor(ROAD);
+            THREADS.start();
+            THREADS.setThreadStarted(true);
+        }
+    } 
 }
