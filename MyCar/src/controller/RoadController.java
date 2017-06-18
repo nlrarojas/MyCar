@@ -56,6 +56,7 @@ public class RoadController extends Observable implements Runnable {
     @Override
     public void run() {
         road = chargeRoad();
+        int t = 0;
         while (true) {
             System.out.println("i");
             while (this.runRoadController){                                
@@ -63,10 +64,17 @@ public class RoadController extends Observable implements Runnable {
                     if(!actualObstacle.getClass().equals(model.Final.class)){                        
                         actualObstacle = getNextActualObstacle();              
                     }
-                    setChanged();
-                    notifyObservers();
-
-                    Thread.sleep(frameSpeed);
+                    
+                    while (t++ < 100){
+                        //imprime imagen
+                        
+                        setChanged();
+                        notifyObservers();
+                        Thread.sleep(frameSpeed);
+                    }
+                    
+                    t = 0;
+                    
                 } catch (InterruptedException ex) {
                     System.out.println(ex.getMessage());
                 }
@@ -123,8 +131,7 @@ public class RoadController extends Observable implements Runnable {
             }else{
                 queue.add(temporalList[i]);
             }                        
-        }
-        System.out.println(queue.toString());        
+        }   
         return queue;
     }
 
