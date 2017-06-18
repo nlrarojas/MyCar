@@ -20,9 +20,9 @@ public class DashController extends Observable implements IConstants{
     private System ElectricManager;
     
     public DashController(RoadView pRoadPanelView, int pFramesImage, view.Dash pDash) {
-        DirectionCoordinator = new Direction(new SystemCoordinator());
-        EngineCoordinator = new Engine(new SystemCoordinator());
-        ElectricCoordinator = new Electric(new SystemCoordinator());
+        DirectionCoordinator = new Direction(new SystemCoordinator(pRoadPanelView));
+        EngineCoordinator = new Engine(new SystemCoordinator(pRoadPanelView));
+        ElectricCoordinator = new Electric(new SystemCoordinator(pRoadPanelView));
         
         DirectionManager = new Direction(new SystemManager());
         EngineManager = new Engine(new SystemManager());

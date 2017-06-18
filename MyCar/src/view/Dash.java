@@ -308,7 +308,7 @@ public class Dash extends javax.swing.JFrame implements IConstants, Observer, Ke
 
     @Override
     public void keyTyped(KeyEvent e) {
-
+        
     }
 
     @Override

@@ -8,7 +8,24 @@ package model;
 public class Final extends Obstacle{
     
     @Override
-    public void generate(){
-        
+    public void generate(boolean b){
+        //Para saber si es de noche o de dia
+        //true si es de dia, false de lo contrario
+        if (b){
+            this.path = "src\\images\\carreteraDiaF\\carreteraDia";
+        }
+        else{
+            this.path = "src\\images\\carreteraNocheF\\carreteraNoche";
+        }
+    }
+
+    @Override
+    public void generate() {
+        if (day){
+            this.path = "src\\images\\carreteraDiaF\\carreteraDia";
+        }
+        else{
+            this.path = "src\\images\\carreteraNocheF\\carreteraNoche";
+        }
     }
 }

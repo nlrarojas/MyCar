@@ -2,13 +2,16 @@ package model;
 
 import controller.Evaluator;
 import util.IConstants;
+import view.RoadView;
 
 public class SystemCoordinator implements ISystem, IConstants{
 
     private Evaluator PlayerEvaluator;
+    private RoadView RoadViewImplementation;
     
-    public SystemCoordinator() {
+    public SystemCoordinator(RoadView pRoadView) {
         PlayerEvaluator = new Evaluator();
+        RoadViewImplementation = pRoadView;
     }
     
     @Override
@@ -54,6 +57,7 @@ public class SystemCoordinator implements ISystem, IConstants{
     
     @Override
     public void updateSpeed(int pSpeed){
+        java.lang.System.out.println(pSpeed);
         ROAD.setFrameSpeed(pSpeed);        
     }
     
@@ -61,6 +65,7 @@ public class SystemCoordinator implements ISystem, IConstants{
     public void startSimulation(String pFileRoadPath){
         if(!THREADS.isThreadStarted()){
             ROAD.setFilePath(pFileRoadPath);
+            ROAD.addObserver(RoadViewImplementation);
             THREADS.addTaskToExecutor(ROAD);
             THREADS.start();
             THREADS.setThreadStarted(true);

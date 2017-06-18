@@ -14,7 +14,12 @@ public class MinSpeed extends Obstacle{
     }
     
     @Override
-    public void generate(){
+    public void generate(boolean b){
+        
+    }
+
+    @Override
+    public void generate() {
         
     }
 }

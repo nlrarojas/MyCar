@@ -12,8 +12,14 @@ public class MaxSpeed extends Obstacle{
     MaxSpeed(String pSpeedLimit) {
         this.speedLimit = Integer.parseInt(pSpeedLimit);
     }
+    
     @Override
-    public void generate(){
+    public void generate(boolean b){
+        
+    }
+
+    @Override
+    public void generate() {
         
     }
 }

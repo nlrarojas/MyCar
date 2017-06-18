@@ -50,7 +50,7 @@ public class Engine extends System implements IConstants {
                 revolutions = (int) ((torque++ + 7.27) / (100.0 / 2750.0));
             }
             speed = speedRaiseCalculation();
-            instructionToExecute(NONE_INSTRUCTION);
+            instructionToExecute(SPEED_UP_ENGINE);
         }
         return revolutions;
     }
@@ -61,7 +61,7 @@ public class Engine extends System implements IConstants {
                 revolutions = (int) ((torque-- + 7.27) / (100.0 / 2750.0));
             }
             speed = speedLowCalculation();
-            instructionToExecute(NONE_INSTRUCTION);
+            instructionToExecute(SLOW_DOWN_ENGINE);
         }
         return revolutions;
     }
@@ -84,7 +84,8 @@ public class Engine extends System implements IConstants {
     @Override
     public void instructionToExecute(String pInstruction) {
         instruction = SystemController.executeSystemInstruction(pInstruction);
-        SystemController.updateSpeed(speed / 100);
+        SystemController.updateSpeed((100 / speed) * 100);
+        java.lang.System.out.println(speed + "   " + (100 / speed) * 100);
     }
 
     @Override

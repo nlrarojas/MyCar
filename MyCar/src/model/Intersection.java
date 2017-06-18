@@ -6,8 +6,24 @@
 package model;
 
 public class Intersection extends Obstacle{
+    
     @Override
-    public void generate(){
-        
+    public void generate(boolean b){
+        if (b){
+            this.path = "src\\images\\carreteraDiaT\\carreteraDia";
+        }
+        else{
+            this.path = "src\\images\\carreteraNocheT\\carreteraNoche";
+        }
+    }
+
+    @Override
+    public void generate() {
+        if (day){
+            this.path = "src\\images\\carreteraDiaT\\carreteraDia";
+        }
+        else{
+            this.path = "src\\images\\carreteraNocheT\\carreteraNoche";
+        }
     }
 }

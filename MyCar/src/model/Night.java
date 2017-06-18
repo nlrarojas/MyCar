@@ -7,8 +7,18 @@ package model;
 
 public class Night extends Obstacle{
  
+    public Night(){
+        super();
+        this.day = false;
+    }
+    
     @Override
-    public void generate(){
+    public void generate(boolean b){
+        this.path = "src\\images\\carreteraNoche\\carreteraNoche";
+    }
+
+    @Override
+    public void generate() {
         
     }
 }
