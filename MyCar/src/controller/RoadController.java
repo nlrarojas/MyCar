@@ -60,8 +60,30 @@ public class RoadController extends Observable{
         String text = this.document.getText();
         String[] temporalList = text.split("");
         Queue <String> queue = new LinkedList();
+        String temp = "";
+        //Compara los strings 
+        //Guarda los obstaculos en una cola
         for (int i = 0; i<temporalList.length; i++){
-            queue.add(temporalList[i]);
+            String obst = temporalList[i];
+            if (isNumber(obst)){
+                temp+=obst;
+            }
+            else{
+                if("m".equals(obst) || "M".equals(obst)){
+                    temp += obst;
+                }
+                else{
+                    if (!"".equals(temp)){
+                        queue.add(temp);
+                        queue.add(obst);
+                        temp = "";
+                    }
+                    else{
+                        queue.add(obst);
+                    }
+                    
+                }
+            }
         }
         return queue;
     }
@@ -73,4 +95,13 @@ public class RoadController extends Observable{
     public Obstacle getActualObstacle(){
         return obstacleGenerator.generateObstacle(road.poll());
     }
+    public boolean isNumber(String str){
+        try{
+            Integer i = Integer.parseInt(str);
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
+        
 }
