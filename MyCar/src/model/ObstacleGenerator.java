@@ -18,10 +18,8 @@ public class ObstacleGenerator {
             case "+":
                 return new FourCorners();
             case "D":
-                isDay = true;
                 return new Day();
             case "N":
-                isDay = false;
                 return new Night();
             case "L":
                 return new Rain();            

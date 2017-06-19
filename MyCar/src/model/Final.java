@@ -22,10 +22,10 @@ public class Final extends Obstacle{
     @Override
     public void generate() {
         if (day){
-            this.path = "src\\images\\carreteraDiaF\\carreteraDia";
+            this.path = "src\\images\\carreteraDiaF\\carreteraDia" + ((counter++ % 98) + 1) + ".png";
         }
         else{
-            this.path = "src\\images\\carreteraNocheF\\carreteraNoche";
+            this.path = "src\\images\\carreteraNocheF\\carreteraNoche" + ((counter++ % 98) + 1) + ".png";
         }
     }
 }

@@ -147,7 +147,7 @@ public class DashController extends Observable implements IConstants{
         this.EngineManager = EngineManager;
     }
 
-    public System getElectricManager() {
+    public System getElectricManager() {        
         return ElectricManager;
     }
 

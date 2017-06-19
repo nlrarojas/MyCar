@@ -32,12 +32,11 @@ public class RoadView implements IConstants, Observer{
     public void update(Observable o, Object arg) {
         if(o instanceof RoadController){
             RoadController Road = (RoadController) o;
-            System.out.println("1");
             if(Road.getActualObstacle() != null){
                 try {
                     Road.getActualObstacle().generate();
                     RoadBackGround.setIcon(new ImageIcon(ImageIO.read(new File(Road.getActualObstacle().getPath()))));
-                    System.out.println(Road.getActualObstacle().getPath());
+                    //System.out.println(Road.getActualObstacle().getPath());
                 } catch (IOException ex) {
                     Logger.getLogger(RoadView.class.getName()).log(Level.SEVERE, null, ex);
                 }

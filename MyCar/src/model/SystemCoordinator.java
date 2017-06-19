@@ -57,7 +57,6 @@ public class SystemCoordinator implements ISystem, IConstants{
     
     @Override
     public void updateSpeed(int pSpeed){
-        java.lang.System.out.println(pSpeed);
         ROAD.setFrameSpeed(pSpeed);        
     }
     

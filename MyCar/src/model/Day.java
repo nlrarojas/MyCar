@@ -22,4 +22,16 @@ public class Day extends Obstacle{
     public void generate() {
         
     }
+
+    @Override
+    public boolean isDay() {
+        return true;
+    }
+
+    @Override
+    public void setDay(boolean day) {
+        this.day = true;
+    }
+    
+    
 }

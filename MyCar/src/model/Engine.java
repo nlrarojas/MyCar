@@ -84,8 +84,7 @@ public class Engine extends System implements IConstants {
     @Override
     public void instructionToExecute(String pInstruction) {
         instruction = SystemController.executeSystemInstruction(pInstruction);
-        SystemController.updateSpeed((100 / speed) * 100);
-        java.lang.System.out.println(speed + "   " + (100 / speed) * 100);
+        SystemController.updateSpeed((100 / speed) * 10);
     }
 
     @Override

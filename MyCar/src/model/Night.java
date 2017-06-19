@@ -21,4 +21,14 @@ public class Night extends Obstacle{
     public void generate() {
         
     }
+
+    @Override
+    public boolean isDay() {
+        return false;
+    }
+
+    @Override
+    public void setDay(boolean day) {
+        this.day = false;
+    }
 }

@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 import model.Obstacle;
 import model.ObstacleGenerator;
-import model.StraightStreet;
 
 public class RoadController extends Observable implements Runnable {
 
@@ -16,6 +15,7 @@ public class RoadController extends Observable implements Runnable {
     private FileReader Document;
     private ObstacleGenerator ObstacleGenerator;
     private Obstacle actualObstacle;
+    private Obstacle dayNigthObstacleIndicator;
     private Queue<String> road;
     
     public RoadController() {
@@ -23,6 +23,7 @@ public class RoadController extends Observable implements Runnable {
         this.ObstacleGenerator = new ObstacleGenerator();
         this.frameSpeed = 0;
         this.runRoadController = false;
+        this.dayNigthObstacleIndicator = getObstacleGenerator().generateObstacle("D");
     }
 
     public RoadController(int pFrameSpeed) {
@@ -30,34 +31,32 @@ public class RoadController extends Observable implements Runnable {
         this.Document = new FileReader();
         this.ObstacleGenerator = new ObstacleGenerator();
         this.runRoadController = false;
+        this.dayNigthObstacleIndicator = getObstacleGenerator().generateObstacle("D");
     }
 
     @Override
     public void run() {
         road = chargeRoad();
-        int t = 0;
-        System.out.println(frameSpeed);
+        int t = 0;        
         while (true) {
-            System.out.print("");
-            while (this.runRoadController){                                
-                try {                              
-                    if(actualObstacle != null){                        
-
+            System.out.println(frameSpeed);
+            while (this.runRoadController){    
+                try {   
+                    if(!road.isEmpty())
+                        System.out.println(road.peek());    
+                    if(actualObstacle != null){                                                                                                
                         if(!actualObstacle.getClass().equals(model.Final.class)){                        
                             actualObstacle = getNextActualObstacle();
-                            if(actualObstacle.getClass().equals(model.Day.class)){
-                                actualObstacle = ObstacleGenerator.generateObstacle(".");                            
-                            }else if(actualObstacle.getClass().equals(model.Night.class)){
-                                actualObstacle = ObstacleGenerator.generateObstacle(".");
-                                StraightStreet ss = (StraightStreet) actualObstacle;
-                                ss.setDay(false);
+                            actualObstacle.setDay(dayNigthObstacleIndicator.isDay());
+                            if(actualObstacle.getClass().equals(model.Day.class) || actualObstacle.getClass().equals(model.Night.class)){
+                                dayNigthObstacleIndicator = actualObstacle;
+                                actualObstacle = getNextActualObstacle();
+                                actualObstacle.setDay(dayNigthObstacleIndicator.isDay());
                             }
                         }
                     }else{
                         actualObstacle = getNextActualObstacle();
                     }
-                    
-                    
                     while (t++ < 100){
                         //imprime imagen                        
                         setChanged();

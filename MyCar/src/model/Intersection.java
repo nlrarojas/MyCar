@@ -20,10 +20,10 @@ public class Intersection extends Obstacle{
     @Override
     public void generate() {
         if (day){
-            this.path = "src\\images\\carreteraDiaT\\carreteraDia";
+            this.path = "src\\images\\carreteraDiaT\\carreteraDia" + ((counter++ % 98) + 1) + ".png";
         }
         else{
-            this.path = "src\\images\\carreteraNocheT\\carreteraNoche";
+            this.path = "src\\images\\carreteraNocheT\\carreteraNoche" + ((counter++ % 98) + 1) + ".png";
         }
     }
 }

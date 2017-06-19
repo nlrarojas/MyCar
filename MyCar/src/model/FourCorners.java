@@ -24,10 +24,10 @@ public class FourCorners extends Obstacle{
     @Override
     public void generate() {
         if (day){
-            this.path = "src\\images\\carreteraDia+\\carreteraDia";
+            this.path = "src\\images\\carreteraDia+\\carreteraDia" + ((counter++ % 98) + 1) + ".png";
         }
         else{
-            this.path = "src\\images\\carreteraNoche+\\carreteraNoche";
+            this.path = "src\\images\\carreteraNoche+\\carreteraNoche" + ((counter++ % 98) + 1) + ".png";
         }
     }
 }
