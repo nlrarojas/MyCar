@@ -27,4 +27,9 @@ public class SystemManager implements ISystem {
     public void startSimulation(String pFileRoadPath){
         
     }
+
+    @Override
+    public void setSystemThread(System pSystem) {
+        
+    }
 }

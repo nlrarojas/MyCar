@@ -11,4 +11,6 @@ public interface ISystem {
     
     public static ThreadController THREADS = ThreadController.getInstance();
     public static RoadController ROAD = new RoadController();        
+    
+    public void setSystemThread(System pSystem);
 }

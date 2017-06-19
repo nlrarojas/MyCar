@@ -1,5 +1,6 @@
 package model;
 
+import controller.Evaluator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import util.IConstants;
@@ -26,9 +27,15 @@ public abstract class System implements Runnable, IConstants {
 
     public System(ISystem pSystem) {
         this.SystemController = pSystem;
+        this.SystemController.setSystemThread(this);
         this.counter = 0;
     }
 
+    public Evaluator getPlayerEvaluator(){
+        SystemCoordinator sys = (SystemCoordinator) SystemController;        
+        return sys.getPlayerEvaluator();
+    }
+    
     @Override
     public void run() {
         while (true) {

@@ -24,7 +24,12 @@ public class MaxSpeed extends Obstacle{
 
     @Override
     public void generate() {
-        
+        if (day){
+            this.path = "src\\images\\carreteraNocheMax\\carreteraDia" + ((counter++ % 98) + 1) + ".png";
+        }
+        else{
+            this.path = "src\\images\\carreteraNocheMax\\carreteraNoche"  + ((counter++ % 98) + 1) + ".png";
+        }
     }
 
     public int getSpeedLimit() {

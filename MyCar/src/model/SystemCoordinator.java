@@ -6,8 +6,9 @@ import view.RoadView;
 
 public class SystemCoordinator implements ISystem, IConstants{
 
-    private Evaluator PlayerEvaluator;
+    private Evaluator PlayerEvaluator;    
     private RoadView RoadViewImplementation;
+    private System SystemToControl;
     
     public SystemCoordinator(RoadView pRoadView, Evaluator pPlayerEvaluator) {
         PlayerEvaluator = pPlayerEvaluator;
@@ -16,7 +17,8 @@ public class SystemCoordinator implements ISystem, IConstants{
     
     @Override
     public int removePoints(int pPoints){
-        PlayerEvaluator.setScore(PlayerEvaluator.getScore() - pPoints);        
+        PlayerEvaluator.setScore(PlayerEvaluator.getScore() - pPoints);      
+        java.lang.System.out.println(PlayerEvaluator.getScore());
         return PlayerEvaluator.getScore();
     }
 
@@ -66,6 +68,7 @@ public class SystemCoordinator implements ISystem, IConstants{
             ROAD.setFilePath(pFileRoadPath);
             ROAD.addObserver(RoadViewImplementation);
             THREADS.addTaskToExecutor(ROAD);
+            THREADS.addTaskToExecutor(SystemToControl);
             THREADS.start();
             THREADS.setThreadStarted(true);
         }
@@ -86,4 +89,11 @@ public class SystemCoordinator implements ISystem, IConstants{
     public void setRoadViewImplementation(RoadView RoadViewImplementation) {
         this.RoadViewImplementation = RoadViewImplementation;
     }
+
+    @Override
+    public void setSystemThread(System pSystem) {
+        SystemToControl = pSystem;
+    }
+    
+    
 }

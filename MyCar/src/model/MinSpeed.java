@@ -15,16 +15,21 @@ public class MinSpeed extends Obstacle{
     @Override
     public void generate(boolean b){
         if (b){
-            this.path = "src\\images\\carreteraDiaMin\\carreteraDia";
+            this.path = "src\\images\\carreteraDiaMin\\carreteraDia" + ((counter++ % 98) + 1) + ".png";
         }
         else{
-            this.path = "src\\images\\carreteraNocheMin\\carreteraNoche";
+            this.path = "src\\images\\carreteraNocheMin\\carreteraNoche"  + ((counter++ % 98) + 1) + ".png";
         }
     }
 
     @Override
     public void generate() {
-        
+        if (day){
+            this.path = "src\\images\\carreteraDiaMin\\carreteraDia" + ((counter++ % 98) + 1) + ".png";
+        }
+        else{
+            this.path = "src\\images\\carreteraNocheMin\\carreteraNoche"  + ((counter++ % 98) + 1) + ".png";
+        }
     }
 
     public int getSpeedLimit() {

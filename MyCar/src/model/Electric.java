@@ -2,7 +2,7 @@ package model;
 
 import util.IConstants;
 
-public class Electric extends System implements IConstants{
+public class Electric extends System implements IConstants, Runnable{
     
     public Electric(ISystem pSystem) {
         super(pSystem);

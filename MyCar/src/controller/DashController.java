@@ -1,6 +1,9 @@
 package controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
+import javax.swing.Timer;
 import model.Direction;
 import model.Electric;
 import model.Engine;
@@ -21,6 +24,8 @@ public class DashController extends Observable implements IConstants{
     
     private Evaluator PlayerEvaluator;
     
+    private Timer TimerUpdater;
+    
     public DashController(RoadView pRoadPanelView, int pFramesImage, view.Dash pDash, Evaluator pPlayerEvaluator) {
         PlayerEvaluator = pPlayerEvaluator;
         DirectionCoordinator = new Direction(new SystemCoordinator(pRoadPanelView, PlayerEvaluator));
@@ -29,8 +34,12 @@ public class DashController extends Observable implements IConstants{
         
         DirectionManager = new Direction(new SystemManager());
         EngineManager = new Engine(new SystemManager());
-        ElectricManager = new Electric(new SystemManager());                      
+        ElectricManager = new Electric(new SystemManager());                             
         
+        TimerUpdater = new Timer(250, (ActionEvent e) -> {
+            setChanged();
+            notifyObservers();
+        });                
         this.addObserver(pDash); 
     }
     
@@ -159,10 +168,18 @@ public class DashController extends Observable implements IConstants{
     }
 
     public Evaluator getPlayerEvaluator() {
-        return PlayerEvaluator;
+        return EngineCoordinator.getPlayerEvaluator();
     }
 
     public void setPlayerEvaluator(Evaluator PlayerEvaluator) {
         this.PlayerEvaluator = PlayerEvaluator;
+    }
+
+    public Timer getTimerUpdater() {
+        return TimerUpdater;
+    }
+
+    public void setTimerUpdater(Timer TimerUpdater) {
+        this.TimerUpdater = TimerUpdater;
     }
 }

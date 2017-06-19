@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.Timer;
 import util.IConstants;
 
-public class Engine extends System implements IConstants {
+public class Engine extends System implements IConstants, Runnable {
 
     private Timer TimerRevolutions;
     private boolean revolutionsPassed;
@@ -15,7 +15,7 @@ public class Engine extends System implements IConstants {
         this.revolutionsPassed = false;
         this.timeExitingRevolutionLimit = 0;
         this.torque = 1;
-
+        
         TimerRevolutions = new Timer(1000, (ActionEvent e) -> {
             if (revolutionsPassed) {
                 TimerRevolutions.stop();
@@ -114,6 +114,6 @@ public class Engine extends System implements IConstants {
     
     @Override
     public void startSimulation(String pFileRoadPath) {
-        SystemController.startSimulation(pFileRoadPath);
+        SystemController.startSimulation(pFileRoadPath);        
     }
 }

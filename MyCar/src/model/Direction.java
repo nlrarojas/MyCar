@@ -2,7 +2,7 @@ package model;
 
 import util.IConstants;
 
-public class Direction extends System implements IConstants{        
+public class Direction extends System implements IConstants, Runnable{        
     
     public Direction(ISystem pSystem) {
         super(pSystem);        

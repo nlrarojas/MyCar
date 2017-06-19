@@ -254,6 +254,7 @@ public class Dash extends javax.swing.JFrame implements IConstants, Observer, Ke
         int returnVal = FileChooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             Controller.setFileRoadPath(FileChooser.getSelectedFile().getAbsolutePath());
+            Controller.getTimerUpdater().start();
         }
     }
 
