@@ -5,7 +5,7 @@ public class Evaluator {
     private int score;
     
     public Evaluator() {
-        this.score = 0;
+        this.score = 100;
     }
 
     public int getScore() {

@@ -19,14 +19,17 @@ public class DashController extends Observable implements IConstants{
     private System EngineManager;
     private System ElectricManager;
     
-    public DashController(RoadView pRoadPanelView, int pFramesImage, view.Dash pDash) {
-        DirectionCoordinator = new Direction(new SystemCoordinator(pRoadPanelView));
-        EngineCoordinator = new Engine(new SystemCoordinator(pRoadPanelView));
-        ElectricCoordinator = new Electric(new SystemCoordinator(pRoadPanelView));
+    private Evaluator PlayerEvaluator;
+    
+    public DashController(RoadView pRoadPanelView, int pFramesImage, view.Dash pDash, Evaluator pPlayerEvaluator) {
+        PlayerEvaluator = pPlayerEvaluator;
+        DirectionCoordinator = new Direction(new SystemCoordinator(pRoadPanelView, PlayerEvaluator));
+        EngineCoordinator = new Engine(new SystemCoordinator(pRoadPanelView, PlayerEvaluator));
+        ElectricCoordinator = new Electric(new SystemCoordinator(pRoadPanelView, PlayerEvaluator));
         
         DirectionManager = new Direction(new SystemManager());
         EngineManager = new Engine(new SystemManager());
-        ElectricManager = new Electric(new SystemManager());      
+        ElectricManager = new Electric(new SystemManager());                      
         
         this.addObserver(pDash); 
     }
@@ -153,5 +156,13 @@ public class DashController extends Observable implements IConstants{
 
     public void setElectricManager(System ElectricManager) {
         this.ElectricManager = ElectricManager;
+    }
+
+    public Evaluator getPlayerEvaluator() {
+        return PlayerEvaluator;
+    }
+
+    public void setPlayerEvaluator(Evaluator PlayerEvaluator) {
+        this.PlayerEvaluator = PlayerEvaluator;
     }
 }

@@ -9,8 +9,8 @@ public class SystemCoordinator implements ISystem, IConstants{
     private Evaluator PlayerEvaluator;
     private RoadView RoadViewImplementation;
     
-    public SystemCoordinator(RoadView pRoadView) {
-        PlayerEvaluator = new Evaluator();
+    public SystemCoordinator(RoadView pRoadView, Evaluator pPlayerEvaluator) {
+        PlayerEvaluator = pPlayerEvaluator;
         RoadViewImplementation = pRoadView;
     }
     
@@ -70,4 +70,20 @@ public class SystemCoordinator implements ISystem, IConstants{
             THREADS.setThreadStarted(true);
         }
     } 
+
+    public Evaluator getPlayerEvaluator() {
+        return PlayerEvaluator;
+    }
+
+    public void setPlayerEvaluator(Evaluator PlayerEvaluator) {
+        this.PlayerEvaluator = PlayerEvaluator;
+    }
+
+    public RoadView getRoadViewImplementation() {
+        return RoadViewImplementation;
+    }
+
+    public void setRoadViewImplementation(RoadView RoadViewImplementation) {
+        this.RoadViewImplementation = RoadViewImplementation;
+    }
 }

@@ -1,6 +1,7 @@
 package view;
 
 import controller.DashController;
+import controller.Evaluator;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
@@ -29,6 +30,7 @@ public class Dash extends javax.swing.JFrame implements IConstants, Observer, Ke
 
     private DashController Controller;
     private RoadView RoadPanelView;
+    private Evaluator PlayerEvaluator;
 
     /**
      * Creates new form Dash
@@ -42,6 +44,8 @@ public class Dash extends javax.swing.JFrame implements IConstants, Observer, Ke
     private void init() {
         this.setSize(WIDTH_WINDOW, HEIGHT_WINDOW);
         lblFondo.setOpaque(false);
+        
+        PlayerEvaluator = new Evaluator();
         
         try {            
             lbl_RigthLigth.setIcon(new ImageIcon(ImageIO.read(new File("C:\\Users\\Nelson\\Documents\\NetBeansProjects\\MyCar\\MyCar\\src\\assets\\RigthOff.png"))));
@@ -260,6 +264,8 @@ public class Dash extends javax.swing.JFrame implements IConstants, Observer, Ke
             lbl_numRPM.setText(EngineUptaded.getRevolutions() + "");
             lbl_numKMH.setText(EngineUptaded.speedToKmH() + " ");
             
+            lbl_cantPts4.setText(Controller.getPlayerEvaluator().getScore() + "");
+            
             if(EngineUptaded.getGear() != 0){
                 lbl_Gear.setText(EngineUptaded.getGear() + "");
             }else{
@@ -303,7 +309,7 @@ public class Dash extends javax.swing.JFrame implements IConstants, Observer, Ke
     }
 
     private void controllerManager() {
-        this.Controller = new DashController(RoadPanelView, 0, this);
+        this.Controller = new DashController(RoadPanelView, 0, this, PlayerEvaluator);
     }
 
     @Override
