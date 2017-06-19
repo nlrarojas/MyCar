@@ -14,7 +14,12 @@ public class MinSpeed extends Obstacle{
     
     @Override
     public void generate(boolean b){
-        
+        if (b){
+            this.path = "src\\images\\carreteraDiaMin\\carreteraDia";
+        }
+        else{
+            this.path = "src\\images\\carreteraNocheMin\\carreteraNoche";
+        }
     }
 
     @Override

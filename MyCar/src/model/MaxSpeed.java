@@ -14,7 +14,12 @@ public class MaxSpeed extends Obstacle{
     
     @Override
     public void generate(boolean b){
-        
+        if (b){
+            this.path = "src\\images\\carreteraDiaMax\\carreteraDia";
+        }
+        else{
+            this.path = "src\\images\\carreteraNocheMax\\carreteraNoche";
+        }
     }
 
     @Override
